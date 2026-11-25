@@ -1,0 +1,27 @@
+appId: com.quvantic.jobflow
+---
+- launchApp
+- tapOn:
+    id: welcome-sign-in
+- tapOn:
+    id: sign-in-email
+- inputText: alex.rivera@harborpine.demo
+- tapOn:
+    id: sign-in-submit
+- tapOn:
+    id: open-magic-link
+- assertVisible: Lila Nguyen
+- tapOn:
+    id: tab-account
+- tapOn:
+    id: sign-out
+- tapOn:
+    id: welcome-sign-in
+- tapOn:
+    id: sign-in-email
+- inputText: nobody@example.com
+- tapOn:
+    id: sign-in-submit
+- tapOn:
+    id: open-magic-link
+- assertVisible: No Jobflow workspace for this email.

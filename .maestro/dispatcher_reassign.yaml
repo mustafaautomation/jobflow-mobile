@@ -1,0 +1,14 @@
+appId: com.quvantic.jobflow
+---
+- launchApp
+- tapOn:
+    id: welcome-try-demo
+- tapOn:
+    id: persona-jordan
+- assertVisible: Priya Shah
+- assertVisible: Mueller Branch Library
+- tapOn:
+    id: job-card-job_harbor_mueller
+- tapOn:
+    id: reassign-member_casey_harbor
+- assertVisible: Assigned to Casey Nguyen

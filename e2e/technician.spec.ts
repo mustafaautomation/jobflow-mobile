@@ -1,0 +1,35 @@
+import { expect, test } from '@playwright/test';
+
+test('technician runs a call from the demo workspace', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('welcome-try-demo').click();
+  await page.getByTestId('persona-alex').click();
+  await expect(page.getByText('Lila Nguyen')).toBeVisible();
+  await page.getByTestId('job-card-job_harbor_lila').click();
+  await expect(page.getByText('No cool — outdoor capacitor')).toBeVisible();
+  await page.getByTestId('job-start').click();
+  await expect(page.getByTestId('job-screen').getByText('In progress')).toBeVisible();
+  await page.getByTestId('open-checklist').click();
+  await page.getByTestId('check-job_harbor_lila_chk_1').click();
+  await page.getByTestId('checklist-screen').getByRole('button', { name: 'Back' }).click();
+  await page.getByTestId('open-notes').click();
+  await page.getByTestId('note-input').fill('Capacitor is swollen. Replacing it.');
+  await page.getByTestId('note-save').click();
+  await expect(page.getByText('Capacitor is swollen. Replacing it.')).toBeVisible();
+  await page.getByTestId('notes-screen').getByRole('button', { name: 'Back' }).click();
+  await page.getByTestId('open-photos').click();
+  await page.getByTestId('stamp-photo').click();
+  await expect(page.getByText(/Field photo/)).toBeVisible();
+  await page.getByTestId('photos-screen').getByRole('button', { name: 'Back' }).click();
+  await page.getByTestId('open-signature').click();
+  await page.getByTestId('signature-name').fill('Lila Nguyen');
+  await page.getByTestId('signature-apply').click();
+  await expect(page.getByTestId('signature-screen').getByText(/Signed by Lila Nguyen/)).toBeVisible();
+  await page.getByTestId('signature-screen').getByRole('button', { name: 'Back' }).click();
+  await page.getByTestId('open-payment').click();
+  await page.getByTestId('payment-card').click();
+  await expect(page.getByText('This job is paid.')).toBeVisible();
+  await page.getByTestId('payment-screen').getByRole('button', { name: 'Back' }).click();
+  await page.getByTestId('job-complete').click();
+  await expect(page.getByTestId('job-screen').getByText('Completed')).toBeVisible();
+});

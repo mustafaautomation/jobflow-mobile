@@ -1,0 +1,44 @@
+appId: com.quvantic.jobflow
+---
+- launchApp
+- tapOn:
+    id: welcome-try-demo
+- tapOn:
+    id: persona-alex
+- assertVisible: Lila Nguyen
+- tapOn:
+    id: job-card-job_harbor_lila
+- tapOn:
+    id: job-start
+- assertVisible: In progress
+- tapOn:
+    id: open-checklist
+- tapOn:
+    id: check-job_harbor_lila_chk_1
+- tapOn: Back
+- tapOn:
+    id: open-notes
+- tapOn:
+    id: note-input
+- inputText: Capacitor is swollen.
+- tapOn:
+    id: note-save
+- assertVisible: Capacitor is swollen.
+- tapOn: Back
+- tapOn:
+    id: open-signature
+- tapOn:
+    id: signature-name
+- inputText: Lila Nguyen
+- tapOn:
+    id: signature-apply
+- assertVisible: Signed by Lila Nguyen
+- tapOn: Back
+- tapOn:
+    id: open-payment
+- tapOn:
+    id: payment-invoice
+- tapOn: Back
+- tapOn:
+    id: job-complete
+- assertVisible: Completed
