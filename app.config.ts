@@ -20,7 +20,7 @@ const config: ExpoConfig = {
   android: {
     package: 'com.quvantic.jobflow',
     adaptiveIcon: {
-      backgroundColor: '#0E6B62',
+      backgroundColor: '#C4622D',
       foregroundImage: './assets/images/android-icon-foreground.png',
       backgroundImage: './assets/images/android-icon-background.png',
       monochromeImage: './assets/images/android-icon-monochrome.png',
@@ -46,9 +46,9 @@ const config: ExpoConfig = {
     [
       'expo-splash-screen',
       {
-        backgroundColor: '#0E6B62',
+        backgroundColor: '#C4622D',
         image: './assets/images/splash-icon.png',
-        imageWidth: 76,
+        imageWidth: 96,
       },
     ],
     [

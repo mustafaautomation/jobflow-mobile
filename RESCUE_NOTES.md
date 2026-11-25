@@ -31,3 +31,9 @@ Checks run locally on 2026-11-25 (Node 22.23.4, the CI version; npm install was 
 Note: under heavy machine load the first cold Jest run timed out on the first component test of a few suites (default 5s timeout while modules transform); a warm re-run passes. Not a code problem, but CI on a cold cache could be slow on that first test.
 
 Still missing / needs a person: real app icons (stock Expo placeholders in place); Maestro flows not run (need a simulator); Apple/Google/Expo accounts, DNS, Supabase keys as listed in README. No EAS build was run.
+
+## App icons (Claude, 2026-11-25)
+
+- Replaced the stock Expo placeholders in `assets/images/` with real Jobflow icons, rendered by the new `scripts/generate-icon.mjs` (plain Node, no dependencies, same approach as stamply-mobile) from the web app's mark (`jobflow/src/app/icon.svg` = `components/logo.tsx` <Mark>: arch + crossbar, white on #C4622D). Outputs: icon (1024, full-bleed), splash-icon (glyph only), favicon (48, rounded tile), Android adaptive background/foreground/monochrome (glyph at 72% for the safe zone).
+- `app.config.ts`: adaptive-icon and splash background changed from the in-app teal #0E6B62 to the logo colour #C4622D (splash imageWidth 76 -> 96). Notification tint left as is.
+- Checks: lint pass, typecheck pass, jest 7 suites / 25 tests pass, `expo config` resolves.
