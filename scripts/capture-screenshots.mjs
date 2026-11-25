@@ -1,5 +1,6 @@
 import { chromium } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 
 const base = process.env.PREVIEW_URL ?? 'http://127.0.0.1:44517';
 const out = new URL('../docs/screenshots/', import.meta.url);
@@ -9,7 +10,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
 
 async function shot(name) {
-  await page.screenshot({ path: new URL(`${name}.png`, out).pathname, fullPage: false });
+  await page.screenshot({ path: fileURLToPath(new URL(`${name}.png`, out)), fullPage: false });
 }
 
 await page.goto(base);

@@ -6,7 +6,7 @@ test('technician runs a call from the demo workspace', async ({ page }) => {
   await page.getByTestId('persona-alex').click();
   await expect(page.getByText('Lila Nguyen')).toBeVisible();
   await page.getByTestId('job-card-job_harbor_lila').click();
-  await expect(page.getByText('No cool — outdoor capacitor')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'No cool — outdoor capacitor' })).toBeVisible();
   await page.getByTestId('job-start').click();
   await expect(page.getByTestId('job-screen').getByText('In progress')).toBeVisible();
   await page.getByTestId('open-checklist').click();

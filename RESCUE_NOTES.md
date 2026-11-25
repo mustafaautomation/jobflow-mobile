@@ -7,3 +7,27 @@ Files written: 88
 
 Not in this copy: files Cursor's template created and the agent never changed (e.g. tsconfig, shadcn ui components, lockfiles, public assets) when scope is 'Last Agent Turn'; binaries.
 
+
+## Repair pass (Claude, 2026-11-25)
+
+Recreated:
+- tsconfig.json: Expo SDK 58 default-template version (expo/tsconfig.base, strict, @/* -> ./src/*).
+- assets/images/{icon,favicon,splash-icon,android-icon-foreground,android-icon-background,android-icon-monochrome}.png: copied from expo-template-default@58.0.35 (the template this app was scaffolded from). These are the stock Expo placeholder icons, not Jobflow branding.
+- package-lock.json: regenerated with npm.
+- docs/screenshots/*.png: re-captured from the rebuilt web export with the repo's own scripts/capture-screenshots.mjs (real captures of the demo, not mockups).
+
+Fixed:
+- e2e/technician.spec.ts: getByText('No cool — outdoor capacitor') matched both the hidden Today card (still mounted under the stack on web) and the job heading; now asserts the heading role.
+- scripts/capture-screenshots.mjs: used URL.pathname for the output path, which breaks when the repo path contains spaces; now uses fileURLToPath.
+
+Checks run locally on 2026-11-25 (Node 22.23.4, the CI version; npm install was done with Node 25):
+- npm install: OK, package-lock.json regenerated (all from registry.npmjs.org)
+- npm run lint: pass
+- npm run typecheck (tsc --noEmit): pass
+- jest: 7 suites, 25 tests pass (matches the Cursor run)
+- npx expo export --platform web: pass (dist/)
+- Playwright web e2e (chromium, CI=true): 4 passed (matches the Cursor run)
+
+Note: under heavy machine load the first cold Jest run timed out on the first component test of a few suites (default 5s timeout while modules transform); a warm re-run passes. Not a code problem, but CI on a cold cache could be slow on that first test.
+
+Still missing / needs a person: real app icons (stock Expo placeholders in place); Maestro flows not run (need a simulator); Apple/Google/Expo accounts, DNS, Supabase keys as listed in README. No EAS build was run.
